@@ -60,16 +60,21 @@
                 } else {
                     $sugar = 0;
                 }
+                
+                if (isset($_POST['volume'])) {
+                    $volume = $_POST['volume'];
+                } else {
+                    $volume = 0;
+                }
 
-                $volume = $_POST['volume'];
                 $time = 0.48;
+                $cup = 0;
                 
                 echo "Ви обрали $water мл води та $sugar ч.л. цукру <br>";
                 
-                $sugar /= $water;
-                $cup = 0;
                 
                 if ($water != 0) {
+                    $sugar /= $water;
                     echo "<p>Чайник закипів</p>";
                     for ($i = $water; $i >= 50; $i -= 50) {
                         $cup += 50;
