@@ -45,6 +45,7 @@
                 <label><input type="radio" name="volume" value="150"> Маленька чашечка (150 мл);</label><br>
                 <label><input type="radio" name="volume" value="250" checked> Середня чашечка (250 мл);</label><br>
                 <label><input type="radio" name="volume" value="500"> Велика чашечка (500 мл);</label><br>
+                <label><input type="radio" name="volume" value="1000"> Термос (1000 мл);</label><br>
                 <input type="submit" value="Замовити">
                 <hr>
             </div>
