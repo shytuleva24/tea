@@ -50,56 +50,42 @@
                 <hr>
             </div>
             <?php 
-                if (isset($_POST['water'])) {
+                if ($_POST) {
                     $water = $_POST['water'];
-                } else {
-                    $water = 0;
-                }
-
-                if (isset($_POST['sugar'])) {
                     $sugar = $_POST['sugar'];
-                } else {
-                    $sugar = 0;
-                }
-                
-                if (isset($_POST['volume'])) {
                     $volume = $_POST['volume'];
-                } else {
-                    $volume = 0;
+                    $time = 0.48;
+                    $cup = 0;
+                    
+                    echo "Ви обрали $water мл води та $sugar ч.л. цукру <br>";
+                    
+                    if ($water != 0) {
+                        $sugarPerCup = $sugar / $water;
+                        echo "<p>Чайник закипів</p>";
+                        for ($i = $water; $i >= 50; $i -= 50) {
+                            $cup += 50;
+                            echo ("<p>Налито ".$cup." мл води</p>");
+                            if ($cup == $volume || $i == 50) {
+                                if ($cup == $volume) {
+                                    echo ("<p>Кружка повна</p>");
+                                } else if ($i == 50) {
+                                    echo ("<p>Вода закінчилась</p>");
+                                }
+                                echo ("<p>Кидаємо " .number_format(($sugarPerCup * $cup), 1). " ч.л. цукру</p>");
+                                echo ("<p>Опускаємо чайний пакетик на " .(int)($time * $cup). " сек</p>");
+                                echo ("<p>Розмішуємо</p>");
+                                echo ("<strong>Кружка чаю готова</strong>");
+                                if ($i != 50) {
+                                    echo ("<p>Беремо наступну кружку</p>");
+                                }
+                                $cup = 0;
+                            }
+                        }
+                        echo ("<p>Смачного чаювання!</p>");
+                    }
+
                 }
 
-                $time = 0.48;
-                $cup = 0;
-                
-                echo "Ви обрали $water мл води та $sugar ч.л. цукру <br>";
-                
-                
-                if ($water != 0) {
-                    $sugar /= $water;
-                    echo "<p>Чайник закипів</p>";
-                    for ($i = $water; $i >= 50; $i -= 50) {
-                        $cup += 50;
-                        echo ("<p>Налито ".$cup." мл води</p>");
-                        if ($cup == $volume) {
-                            echo ("<p>Кружка повна</p>");
-                            echo ("<p>Кидаємо " .number_format(($sugar * $cup), 1). " ч.л. цукру</p>");
-                            echo ("<p>Опускаємо чайний пакетик на " .(int)($time * $cup). " сек</p>");
-                            echo ("<p>Розмішуємо</p>");
-                            echo ("<strong>Кружка чаю готова</strong>");
-                            if ($i != 50) {
-                                echo ("<p>Беремо наступну кружку</p>");
-                            }
-                            $cup = 0;
-                        } else if ($i == 50) {
-                            echo ("<p>Вода закінчилась</p>");
-                            echo ("<p>Кидаємо " .number_format(($sugar * $cup), 1). " ч.л. цукру</p>");
-                            echo ("<p>Опускаємо чайний пакетик на " .(int)($time * $cup). " сек</p>");
-                            echo ("<p>Розмішуємо</p>");
-                            echo ("<strong>Кружка чаю готова</strong>");
-                        }
-                    }
-                    echo ("<p>Смачного чаювання!</p>");
-                }
 
                     
             ?>
